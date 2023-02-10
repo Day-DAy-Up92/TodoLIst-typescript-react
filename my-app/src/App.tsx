@@ -20,8 +20,8 @@ const toggleCompleted:ToggleCompleted = selectedTodo =>{
  setTodos(updateTodo)
 };
   return (
-    <div className="App">
-      <h1 className='header'>todos</h1>
+    <div className="todo-app">
+      <h1 className='header'>TodoList</h1>
       <TodoForm addTodo={addTodo}/>
       <TodoList todoData={todos} toggleCompleted={toggleCompleted }/>
     </div>
