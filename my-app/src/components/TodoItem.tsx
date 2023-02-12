@@ -24,8 +24,6 @@ export const TodoItem:React.FC<TodoItemProps> = ({todo,toggleCompleted,deleteTod
     }
     return (
         <li className='todo-item'>
-
-       
         <input onChange={()=>{toggleCompleted(todo)}} type="checkbox" checked={todo.completed}/>{edited?<p onDoubleClick={()=>{setEdited(!edited)}}>{todo.text}</p>:<input defaultValue={todo.text} type="text" onChange={getIptValue} ref={editedValue} onKeyDown={handleEdit}/>}
         <button className='delete-btn' onClick={handleDelete}>delete</button>
         </li>

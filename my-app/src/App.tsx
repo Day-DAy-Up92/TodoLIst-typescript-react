@@ -3,13 +3,14 @@ import { TodoForm } from './components/TodoForm';
 import { TodoList} from './components/TodoList';
 // import { TodoItem } from './components/TodoItem';
 import './App.css';
-
 function App() {
   const [todos,setTodos] = useState<Array<Todo>>([]);
-const addTodo:AddTodo = newTodo=>{
-  if(newTodo!==" "){
+ const addTodo:AddTodo = newTodo=>{
+  if(!newTodo){alert("Please enter your Task!")}
+  else if(newTodo!==" "){
     setTodos([...todos,{id:todos.length,text:newTodo,completed:false}]);
   }
+ 
 }
 const deleteTodo:DeleteTodo = id=>{
   const result = todos.findIndex((todo) => todo.id === id);
@@ -21,17 +22,13 @@ const editTodo:EditTodo =(id,value)=>{
   const newTodos = [...todos];
   const result = newTodos.filter((todo) => todo.id === id);
     for (let index = 0; index < result.length; index++) {
-      newTodo = result[index];
+      newTodo = result[index]; 
+      if (!value) {
+        alert("please enter your task");
+    }else{
       newTodo.text = value
       setTodos(newTodos)
-    }
-    // if (!value) {
-      //   alert("please enter your task");
-    // }
-    // if (value) {
-    //   newTodo.text = value;
-    //   setTodos(newTodos);
-    // }
+    }}
 }
 const toggleCompleted:ToggleCompleted = selectedTodo =>{
  const updateTodo = todos.map((todo) =>{
@@ -40,6 +37,8 @@ const toggleCompleted:ToggleCompleted = selectedTodo =>{
   }return todo;
  });
  setTodos(updateTodo)
+ console.log(todos);
+ 
 };
   return (
     <div className="todo-app">
