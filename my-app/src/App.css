@@ -41,26 +41,41 @@ background: linear-gradient(90deg, rgba(93,35,240,1) 0%, rgba(183,100,251,1) 90%
   text-transform: capitalize;
 }
 .todo-list {
+
+
   list-style: none;
   padding: 0;
   margin: 0;
+  width: 320px;
 }
 .todo-item {
   display: flex;
+  align-items: center;
   justify-content: space-between;
 }
 .todo-row-completed {
+  
   text-decoration: line-through;
 }
 .todo-row {
-  display: flex;
+  /* display: flex;
   justify-content: flex-start;
   margin: 4px auto;
   border-radius: 20px;
-  padding: 16px;
+  padding: 16px; */
   text-decoration: none;
-  width: 80%;
-  box-shadow: rgba(183,100,251,1);
+  /* width: 80%; */
+}
+.delete-btn{
+  cursor: pointer;
+  background: rgb(93,85,240);
+background: linear-gradient(90deg, rgba(457,127,240,1) 0%, rgba(123,219,345,1) 90%);
+  border-radius: 2px;
+  border-style: inherit;
+  color: white;
+}
+.delete-btn:hover{
+color: red;
 }
 .completed {
   text-decoration: line-through;

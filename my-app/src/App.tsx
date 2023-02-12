@@ -8,9 +8,10 @@ function App() {
   const [todos,setTodos] = useState<Array<Todo>>([]);
 const addTodo:AddTodo = newTodo=>{
   if(newTodo!==" "){
-    setTodos([...todos,{text:newTodo,completed:false}]);
+    setTodos([...todos,{id:todos.length,text:newTodo,completed:false}]);
   }
 }
+
 const toggleCompleted:ToggleCompleted = selectedTodo =>{
  const updateTodo = todos.map((todo) =>{
   if(todo===selectedTodo){
