@@ -53,11 +53,10 @@ background: linear-gradient(90deg, rgba(93,35,240,1) 0%, rgba(183,100,251,1) 90%
   align-items: center;
   justify-content: space-between;
 }
-.todo-row-completed {
-  
+.done-todo {
   text-decoration: line-through;
 }
-.todo-row {
+.wait-todo {
   /* display: flex;
   justify-content: flex-start;
   margin: 4px auto;
