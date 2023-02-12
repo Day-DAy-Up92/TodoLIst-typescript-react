@@ -3,8 +3,10 @@ import { TodoForm } from './components/TodoForm';
 import { TodoList} from './components/TodoList';
 // import { TodoItem } from './components/TodoItem';
 import './App.css';
+import { AddTodo, ClearCompletedTodos, DeleteTodo, EditTodo, ShowActiveTodos, ShowAllTodos, ShowCompletedTodos, Todo, ToggleCompleted } from './types';
 function App() {
   const [todos,setTodos] = useState<Array<Todo>>([]);
+   const [type,setType] = useState(0)
  const addTodo:AddTodo = newTodo=>{
   if(!newTodo){alert("Please enter your Task!")}
   else if(newTodo!==" "){
@@ -37,14 +39,35 @@ const toggleCompleted:ToggleCompleted = selectedTodo =>{
   }return todo;
  });
  setTodos(updateTodo)
- console.log(todos);
- 
 };
+
+  const showAllTodos:ShowAllTodos=()=>{
+    setType(0);
+  };
+  const showActiveTodos:ShowActiveTodos=()=>{
+    setType(1);
+  };
+  const showCompletedTodos:ShowCompletedTodos = ()=>{
+     setType(2);
+    };
+    const clearCompletedTodos:ClearCompletedTodos = ()=>{
+      const newTodos = [...todos];
+      const rest = newTodos.filter((todo) => todo.completed === false);
+      setTodos([...rest]);
+    };
+
   return (
     <div className="todo-app">
       <h1 className='header'>TodoList</h1>
       <TodoForm addTodo={addTodo}/>
-      <TodoList editTodo={editTodo} todoData={todos} toggleCompleted={toggleCompleted } deleteTodo={deleteTodo}/>
+      {(type===0)?
+      <TodoList editTodo={editTodo} todoData={todos} toggleCompleted={toggleCompleted } deleteTodo={deleteTodo}/>:((type===1)?<TodoList editTodo={editTodo} todoData={todos.filter((todo)=>todo.completed===false)} toggleCompleted={toggleCompleted } deleteTodo={deleteTodo}/>:<TodoList editTodo={editTodo} todoData={todos.filter((todo)=>todo.completed===true)} toggleCompleted={toggleCompleted } deleteTodo={deleteTodo}/>)}
+      <div className='button-list'>
+        <button onClick={showAllTodos}>All</button>
+        <button onClick={showActiveTodos}>Active</button>
+        <button onClick={showCompletedTodos}>Completed</button>
+        <button onClick={clearCompletedTodos}>Clear completed</button>
+      </div>
     </div>
   );
 }

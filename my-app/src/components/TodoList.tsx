@@ -1,4 +1,5 @@
 import React from 'react';
+import { DeleteTodo, EditTodo, Todo, ToggleCompleted } from '../types';
 import {TodoItem} from './TodoItem';
 interface TodoListProps {
 todoData:Array<Todo>;

@@ -1,4 +1,5 @@
 import React, {MouseEvent, useRef, useState,KeyboardEvent} from 'react'
+import { DeleteTodo, EditTodo, Todo, ToggleCompleted } from '../types';
 interface TodoItemProps {
     todo:Todo;
     toggleCompleted:ToggleCompleted;
@@ -24,7 +25,7 @@ export const TodoItem:React.FC<TodoItemProps> = ({todo,toggleCompleted,deleteTod
     }
     return (
         <li className='todo-item'>
-        <input onChange={()=>{toggleCompleted(todo)}} type="checkbox" checked={todo.completed}/>{edited?<p onDoubleClick={()=>{setEdited(!edited)}}>{todo.text}</p>:<input defaultValue={todo.text} type="text" onChange={getIptValue} ref={editedValue} onKeyDown={handleEdit}/>}
+        <input onChange={()=>{toggleCompleted(todo)}} type="checkbox" checked={todo.completed}/>{edited?<p className={todo.completed?"done-todo":"wait-todo"} onDoubleClick={()=>{setEdited(!edited)}}>{todo.text}</p>:<input defaultValue={todo.text} type="text" onChange={getIptValue} ref={editedValue} onKeyDown={handleEdit}/>}
         <button className='delete-btn' onClick={handleDelete}>delete</button>
         </li>
     )
