@@ -11,6 +11,11 @@ const addTodo:AddTodo = newTodo=>{
     setTodos([...todos,{id:todos.length,text:newTodo,completed:false}]);
   }
 }
+const deleteTodo:DeleteTodo = id=>{
+  const result = todos.findIndex((todo) => todo.id === id);
+  todos.splice(result, 1);
+  setTodos([...todos]);
+}
 
 const toggleCompleted:ToggleCompleted = selectedTodo =>{
  const updateTodo = todos.map((todo) =>{
@@ -24,7 +29,7 @@ const toggleCompleted:ToggleCompleted = selectedTodo =>{
     <div className="todo-app">
       <h1 className='header'>TodoList</h1>
       <TodoForm addTodo={addTodo}/>
-      <TodoList todoData={todos} toggleCompleted={toggleCompleted }/>
+      <TodoList todoData={todos} toggleCompleted={toggleCompleted } deleteTodo={deleteTodo}/>
     </div>
   );
 }
