@@ -1,18 +1,32 @@
-import React, {MouseEvent} from 'react'
+import React, {MouseEvent, useRef, useState,KeyboardEvent} from 'react'
 interface TodoItemProps {
     todo:Todo;
     toggleCompleted:ToggleCompleted;
     deleteTodo:DeleteTodo;
+    editTodo:EditTodo;
 
 }
-export const TodoItem:React.FC<TodoItemProps> = ({todo,toggleCompleted,deleteTodo})=>{
+export const TodoItem:React.FC<TodoItemProps> = ({todo,toggleCompleted,deleteTodo,editTodo})=>{
+    const [getSearchVal, SetGetSearchVal] = useState('');
+    const [edited,setEdited] = useState(true);
+    const editedValue = useRef(null);
+    const getIptValue = (event: { target: { value: string } }) => {
+        SetGetSearchVal(event.target.value);
+      };
     const handleDelete = (e:MouseEvent<HTMLButtonElement>) => {
         deleteTodo(todo.id)
     }
+    const handleEdit = (e:KeyboardEvent<HTMLInputElement>) => {
+        if (e.keyCode === 13) {
+            setEdited(!edited);
+            editTodo(todo.id, getSearchVal);
+          }
+    }
     return (
-        <li className='todo-item'> 
-        <label className={todo.completed?'todo-row-completed':'todo-row'}></label>
-        <input onChange={()=>{toggleCompleted(todo)}} type="checkbox" checked={todo.completed}/>{todo.text}
+        <li className='todo-item'>
+
+       
+        <input onChange={()=>{toggleCompleted(todo)}} type="checkbox" checked={todo.completed}/>{edited?<p onDoubleClick={()=>{setEdited(!edited)}}>{todo.text}</p>:<input defaultValue={todo.text} type="text" onChange={getIptValue} ref={editedValue} onKeyDown={handleEdit}/>}
         <button className='delete-btn' onClick={handleDelete}>delete</button>
         </li>
     )

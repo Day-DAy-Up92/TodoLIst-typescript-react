@@ -16,7 +16,23 @@ const deleteTodo:DeleteTodo = id=>{
   todos.splice(result, 1);
   setTodos([...todos]);
 }
-
+const editTodo:EditTodo =(id,value)=>{
+  let newTodo:Todo;
+  const newTodos = [...todos];
+  const result = newTodos.filter((todo) => todo.id === id);
+    for (let index = 0; index < result.length; index++) {
+      newTodo = result[index];
+      newTodo.text = value
+      setTodos(newTodos)
+    }
+    // if (!value) {
+      //   alert("please enter your task");
+    // }
+    // if (value) {
+    //   newTodo.text = value;
+    //   setTodos(newTodos);
+    // }
+}
 const toggleCompleted:ToggleCompleted = selectedTodo =>{
  const updateTodo = todos.map((todo) =>{
   if(todo===selectedTodo){
@@ -29,7 +45,7 @@ const toggleCompleted:ToggleCompleted = selectedTodo =>{
     <div className="todo-app">
       <h1 className='header'>TodoList</h1>
       <TodoForm addTodo={addTodo}/>
-      <TodoList todoData={todos} toggleCompleted={toggleCompleted } deleteTodo={deleteTodo}/>
+      <TodoList editTodo={editTodo} todoData={todos} toggleCompleted={toggleCompleted } deleteTodo={deleteTodo}/>
     </div>
   );
 }
