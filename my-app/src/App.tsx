@@ -63,10 +63,10 @@ const toggleCompleted:ToggleCompleted = selectedTodo =>{
       {(type===0)?
       <TodoList editTodo={editTodo} todoData={todos} toggleCompleted={toggleCompleted } deleteTodo={deleteTodo}/>:((type===1)?<TodoList editTodo={editTodo} todoData={todos.filter((todo)=>todo.completed===false)} toggleCompleted={toggleCompleted } deleteTodo={deleteTodo}/>:<TodoList editTodo={editTodo} todoData={todos.filter((todo)=>todo.completed===true)} toggleCompleted={toggleCompleted } deleteTodo={deleteTodo}/>)}
       <div className='button-list'>
-        <button onClick={showAllTodos}>All</button>
-        <button onClick={showActiveTodos}>Active</button>
-        <button onClick={showCompletedTodos}>Completed</button>
-        <button onClick={clearCompletedTodos}>Clear completed</button>
+        <button className='btn' onClick={showAllTodos}>All</button>
+        <button className='btn' onClick={showActiveTodos}>Active</button>
+        <button className='btn' onClick={showCompletedTodos}>Completed</button>
+        <button className='btn' onClick={clearCompletedTodos}>Clear completed</button>
       </div>
     </div>
   );

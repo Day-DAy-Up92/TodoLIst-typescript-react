@@ -54,6 +54,7 @@ background: linear-gradient(90deg, rgba(93,35,240,1) 0%, rgba(183,100,251,1) 90%
   justify-content: space-between;
 }
 .done-todo {
+  box-shadow: #c076ee;
   text-decoration: line-through;
 }
 .wait-todo {
@@ -78,4 +79,14 @@ color: red;
 }
 .completed {
   text-decoration: line-through;
+}
+.btn {
+  cursor: pointer;
+  background: rgb(93,35,240);
+  background: linear-gradient(90deg, rgba(93,35,240,1) 0%, rgba(183,100,251,1) 90%);
+  border-style: inherit;
+  color: white;
+}
+.btn:hover {
+  color: purple;
 }
